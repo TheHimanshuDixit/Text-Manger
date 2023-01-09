@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 export default function Navbar(props) {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">{props.title}</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,10 +32,11 @@ export default function Navbar(props) {
                             <a className="nav-link disabled" href="/" tabIndex="-1" aria-disabled="true">Disabled</a>
                         </li> */}
                     </ul>
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-primary" type="submit">Search</button>
-                    </form>
+                    <div className={`form-check form-switch text-${props.mode === 'light'?'dark':'light'}`}>
+                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault"/>
+                        {/* ${props.mode === 'light'?'dark':'light'}  this is ternary operator*/}
+                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable {props.mode === 'light'?'Dark':'Light'} Mode</label>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -44,11 +45,11 @@ export default function Navbar(props) {
 
 // argument type setting  if prop type is not the type written below it will give error
 Navbar.propTypes = {
-    title : PropTypes.string.isRequired ,  // is required means mandate to fill the value
-    abouttext : PropTypes.string
+    title: PropTypes.string.isRequired,  // is required means mandate to fill the value
+    abouttext: PropTypes.string
 }
 
 Navbar.defaultProps = {
-    title : "Title required",
-    abouttext : "About"
+    title: "Title required",
+    abouttext: "About"
 }

@@ -24,7 +24,7 @@ export default function Textform(props) {
     }
 
     const handleRESClick = () => {
-        let newText = text.trim();
+        let newText = text.replace(/[ ]+/g, ' ');;
         setText(newText)
     }
 
@@ -45,21 +45,21 @@ export default function Textform(props) {
     }
 
     const style = {
-        'font-weight' : 'normal'
+        'font-weight': 'normal'
     }
-    const [myStyle,setMyStyle] = useState(style);
-    const [btn,setBtn] = useState("Bold Text");
+    const [myStyle, setMyStyle] = useState(style);
+    const [btn, setBtn] = useState("Bold Text");
 
     const handleboldClick = () => {
-        if(myStyle['font-weight'] === "normal"){
+        if (myStyle['font-weight'] === "normal") {
             setMyStyle({
-                'font-weight' : 'bold'
+                'font-weight': 'bold'
             })
             setBtn("Normal Text")
         }
-        else{
+        else {
             setMyStyle({
-                'font-weight' : 'normal'
+                'font-weight': 'normal'
             })
             setBtn("Bold Text")
         }
@@ -76,35 +76,36 @@ export default function Textform(props) {
         }
     }
 
-    const [text, setText] = useState('Enter text here');
+    const [text, setText] = useState('');
     // text = "new text"; // Wrong way to change the state
     // setText("new text"); // Correct way to change the state
 
     return (
         <>
-            <div className='container'>
+            <div className='container' style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
                     {/* <label for="myBox" className="form-label">Example textarea</label> */}
-                    <textarea style={myStyle} className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+                    <textarea style={{ 'font-weight': btn === 'Normal Text' ? 'bold' : 'normal', backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white' }} className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
                 </div>
-                <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
-                <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
-                <button className="btn btn-primary mx-1" onClick={handleRESClick}>Remove Extra Space</button>
-                <button className="btn btn-primary mx-1" onClick={handlereverseClick}>Reverse the text</button>
-                <button className="btn btn-primary mx-1" onClick={handlecopyClick}>Copy Text</button>
-                <button className="btn btn-primary mx-1" onClick={handlecutClick}>Cut Text</button>
-                <button className="btn btn-primary mx-1" onClick={handleboldClick}>{btn}</button>
-                <button className="btn btn-primary mx-1" onClick={handleclearClick}>Clear</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handleUpClick}>Convert to Uppercase</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handleLoClick}>Convert to Lowercase</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handleRESClick}>Remove Extra Space</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handlereverseClick}>Reverse the text</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handlecopyClick}>Copy Text</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handlecutClick}>Cut Text</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handleboldClick}>{btn}</button>
+                <button className={`btn btn-${props.mode === 'light' ? 'primary' : 'dark'} mx-1`} onClick={handleclearClick}>Clear</button>
             </div>
-            <div className="container my-3">
-                <h2>Your text summary</h2>
+            <div className="container my-3" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
+                <h2>-: Your Text Summary :-</h2>
                 {/* text.split(" ") will split words and form array */}
-                <p>{countword()} words and {text.length} characters</p>
+                <p>{countword()} Words</p>
+                <p>{text.length} Characters</p>
                 {/* <p>{0.008 * text.split(" ").length} Minutes read</p> */}
-                <p>{0.008 * countword()} Minutes read</p>
-                <h2>Preview</h2>
-                <p style={myStyle}>{text}</p>
+                <p>{0.008 * countword()} Minutes to read</p>
+                <h2>-: Preview :-</h2>
+                <p style={myStyle}>{text.length > 0 ? text : "Enter Something in the textbox above to preview it here"}</p>
             </div>
         </>
     )
