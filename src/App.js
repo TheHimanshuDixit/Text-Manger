@@ -4,7 +4,7 @@ import Textform from './Components/Textform';
 
 function App() {
   return (
-    <>
+    <div className='App'>
       {/* <Navbar /> */}
       {/* passing props it is like an argument (object) */}
       {/* <Navbar  title="Text Manager" abouttext="About Text Manager" /> */}
@@ -12,7 +12,7 @@ function App() {
       <div className="container my-3">
         <Textform heading="Enter the text to Analyze Below"/>
       </div>
-    </>
+    </div>
   );
 }
 export default App;

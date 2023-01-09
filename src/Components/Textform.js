@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 
 export default function Textform(props) {
+
     const handleUpClick = () => {
         // console.log("Uppercase was clicked: " +  text);
         let newText = text.toUpperCase();
@@ -43,6 +44,27 @@ export default function Textform(props) {
         setText(event.target.value)
     }
 
+    const style = {
+        'font-weight' : 'normal'
+    }
+    const [myStyle,setMyStyle] = useState(style);
+    const [btn,setBtn] = useState("Bold Text");
+
+    const handleboldClick = () => {
+        if(myStyle['font-weight'] === "normal"){
+            setMyStyle({
+                'font-weight' : 'bold'
+            })
+            setBtn("Normal Text")
+        }
+        else{
+            setMyStyle({
+                'font-weight' : 'normal'
+            })
+            setBtn("Bold Text")
+        }
+    }
+
     function countword() {
         if (text === "") {
             let w = text.split(" ");
@@ -64,7 +86,7 @@ export default function Textform(props) {
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
                     {/* <label for="myBox" className="form-label">Example textarea</label> */}
-                    <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+                    <textarea style={myStyle} className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
                 </div>
                 <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
                 <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
@@ -72,6 +94,7 @@ export default function Textform(props) {
                 <button className="btn btn-primary mx-1" onClick={handlereverseClick}>Reverse the text</button>
                 <button className="btn btn-primary mx-1" onClick={handlecopyClick}>Copy Text</button>
                 <button className="btn btn-primary mx-1" onClick={handlecutClick}>Cut Text</button>
+                <button className="btn btn-primary mx-1" onClick={handleboldClick}>{btn}</button>
                 <button className="btn btn-primary mx-1" onClick={handleclearClick}>Clear</button>
             </div>
             <div className="container my-3">
@@ -81,7 +104,7 @@ export default function Textform(props) {
                 {/* <p>{0.008 * text.split(" ").length} Minutes read</p> */}
                 <p>{0.008 * countword()} Minutes read</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p style={myStyle}>{text}</p>
             </div>
         </>
     )
