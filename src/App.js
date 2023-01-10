@@ -3,53 +3,67 @@
 import './App.css';
 import Navbar from './Components/Navbar';
 import Textform from './Components/Textform';
-import React, {useState} from 'react';
+import About from './Components/About';
 import Alert from './Components/Alert';
+import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');            // whether dark mode is enabled or not
   const [alert, setAlert] = useState(null)
 
-  const showAlert = (message, type)=>{
+  const showAlert = (message, type) => {
     setAlert({
-      msg : message,
-      type : type
+      msg: message,
+      type: type
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       setAlert(null)
-    },2000)
+    }, 2000)
   }
 
-  const toggleMode = () =>{
-    if(mode === 'light')
-    {
+  const toggleMode = () => {
+    if (mode === 'light') {
       setMode('dark');
       document.body.style.backgroundColor = 'black'
-      showAlert("Dark mode has been enabled","success")
+      showAlert("Dark mode has been enabled", "success")
       // changing title dynamically
       document.title = 'Text Manager - Dark Mode'
     }
-    else
-    {
+    else {
       setMode('light');
       document.body.style.backgroundColor = 'white'
-      showAlert("Light mode has been enabled","success")
+      showAlert("Light mode has been enabled", "success")
       document.title = 'Text Manager - Light Mode'
     }
   }
 
   return (
     <>
-    <Navbar title="Text Manager" mode={mode} toggleMode={toggleMode}/>
-    <Alert alert={alert}/>
-    <div className='App'>
-      {/* <Navbar /> */}
-      {/* passing props it is like an argument (object) */}
-      {/* <Navbar  title="Text Manager" abouttext="About Text Manager" /> */}
-      <div className="container my-3">
-        <Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert}/>
-      </div>
-    </div>
+      <Router>
+        <Navbar title="Text Manager" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className='App'>
+          {/* <Navbar /> */}
+          {/* passing props it is like an argument (object) */}
+          {/* <Navbar  title="Text Manager" abouttext="About Text Manager" /> */}
+          <div className="container my-3">
+            <Routes>
+              {/* /Users --> component 1
+              /Users/home --> component 2 */}
+              {/* exact keyword is like it work it went to this path  not even a small change in path */}
+              <Route exact path="/about" element ={<About/>}>
+              </Route>
+              <Route exact path="/" element ={<Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert} />}>
+              </Route>
+            </Routes>
+          </div>
+        </div>
+      </Router>
     </>
   );
 }
