@@ -56,7 +56,7 @@ function App() {
               {/* /Users --> component 1
               /Users/home --> component 2 */}
               {/* exact keyword is like it work it went to this path  not even a small change in path */}
-              <Route exact path="/about" element ={<About/>}>
+              <Route exact path="/about" element ={<About mode={mode}/>}>
               </Route>
               <Route exact path="/" element ={<Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert} />}>
               </Route>
