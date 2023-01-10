@@ -47,22 +47,20 @@ function App() {
       <Router>
         <Navbar title="Text Manager" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
-        <div className='App'>
           {/* <Navbar /> */}
           {/* passing props it is like an argument (object) */}
           {/* <Navbar  title="Text Manager" abouttext="About Text Manager" /> */}
-          <div className="container my-3">
+          <div className="container my-3 App">
             <Routes>
               {/* /Users --> component 1
               /Users/home --> component 2 */}
               {/* exact keyword is like it work it went to this path  not even a small change in path */}
-              <Route exact path="/about" element ={<About mode={mode}/>}>
-              </Route>
               <Route exact path="/" element ={<Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert} />}>
+              </Route>
+              <Route exact path="/about" element ={<About mode={mode}/>}>
               </Route>
             </Routes>
           </div>
-        </div>
       </Router>
     </>
   );
