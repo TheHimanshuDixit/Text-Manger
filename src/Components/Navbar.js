@@ -1,11 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
 
 // a and href works but it reload the page 
 // so we need Link to for not reload the page 
 
 export default function Navbar(props) {
+    const [navcls1, setNavCls1] = useState("active");
+    const [navcls2, setNavCls2] = useState("");
+
+    const highlight=(event)=>{
+        if(navcls1 === "active" && event.target.id === "navAbout")
+        {
+            setNavCls2("active");
+            setNavCls1("");
+        }
+        else if(navcls2 === "active" && event.target.id === "navHome")
+        {
+            setNavCls1("active");
+            setNavCls2("");
+        }
+    }
     return (
         <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
             <div className="container-fluid">
@@ -16,10 +32,10 @@ export default function Navbar(props) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                            <Link className={`nav-link ${navcls1}`} id="navHome" onClick={highlight} aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about">{props.abouttext}</Link>
+                            <Link className={`nav-link ${navcls2}`} id="navAbout" onClick={highlight} to="/about">{props.abouttext}</Link>
                         </li>
                         {/* <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
