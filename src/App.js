@@ -3,14 +3,14 @@
 import './App.css';
 import Navbar from './Components/Navbar';
 import Textform from './Components/Textform';
-// import About from './Components/About';
+import About from './Components/About';
 import Alert from './Components/Alert';
 import React, { useState } from 'react';
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-// } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');            // whether dark mode is enabled or not
@@ -44,25 +44,25 @@ function App() {
 
   return (
     <>
-      {/* <Router basename='/react_tutorial'> */}
+      <Router>
         <Navbar title="Text Manager" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
-          {/* <Navbar /> */}
-          {/* passing props it is like an argument (object) */}
-          {/* <Navbar  title="Text Manager" abouttext="About Text Manager" /> */}
-          <div className="container my-3 App">
-          <Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert} />
-            {/* <Routes> */}
-              {/* /Users --> component 1
+        {/* <Navbar /> */}
+        {/* passing props it is like an argument (object) */}
+        {/* <Navbar  title="Text Manager" abouttext="About Text Manager" /> */}
+        <div className="container my-3 App">
+          {/* <Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert} /> */}
+          {/* /Users --> component 1
               /Users/home --> component 2 */}
-              {/* exact keyword is like it work it went to this path  not even a small change in path */}
-              {/* <Route exact path="/" element ={<Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert} />}>
-              </Route>
-              <Route exact path="/about" element ={<About mode={mode}/>}>
-              </Route>
-            </Routes> */}
-          </div>
-      {/* </Router> */}
+          {/* exact keyword is like it work it went to this path  not even a small change in path */}
+          <Routes>
+            <Route exact path="/" element={<Textform heading="... ENTER THE TEXT BELOW AND ANALYZE ..." mode={mode} showAlert={showAlert} />}>
+            </Route>
+            <Route exact path="/about" element={<About mode={mode} />}>
+            </Route>
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
