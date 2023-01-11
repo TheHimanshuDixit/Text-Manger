@@ -10,14 +10,12 @@ export default function Navbar(props) {
     const [navcls1, setNavCls1] = useState("active");
     const [navcls2, setNavCls2] = useState("");
 
-    const highlight=(event)=>{
-        if(navcls1 === "active" && event.target.id === "navAbout")
-        {
+    const highlight = (event) => {
+        if (navcls1 === "active" && event.target.id === "navAbout") {
             setNavCls2("active");
             setNavCls1("");
         }
-        else if(navcls2 === "active" && event.target.id === "navHome")
-        {
+        else if (navcls2 === "active" && event.target.id === "navHome") {
             setNavCls1("active");
             setNavCls2("");
         }
@@ -27,7 +25,7 @@ export default function Navbar(props) {
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">{props.title}</a>
                 {/* <Link className="navbar-brand" to="/">{props.title}</Link> */}
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -54,11 +52,11 @@ export default function Navbar(props) {
                             <a className="nav-link disabled" href="/" tabIndex="-1" aria-disabled="true">Disabled</a>
                         </li> */}
                     </ul>
-                    <div className={`form-check form-switch text-${props.mode === 'light'?'dark':'light'}`}>
-                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault"/>
+                    <form className={`form-check form-switch text-${props.mode === 'light' ? 'dark' : 'light'}`}>
+                        <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault" />
                         {/* ${props.mode === 'light'?'dark':'light'}  this is ternary operator*/}
-                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable {props.mode === 'light'?'Dark':'Light'} Mode</label>
-                    </div>
+                        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable {props.mode === 'light' ? 'Dark' : 'Light'} Mode</label>
+                    </form>
                 </div>
             </div>
         </nav>
