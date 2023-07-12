@@ -5,7 +5,7 @@ This is my first React Basic project (text handler-utils-manager-manipulator)
 
 ## Demo Link
 ```
-text-analyzer-manipulator.netlify.app
+https://text-analyzer-manipulator.netlify.app/
 ```
 
 
