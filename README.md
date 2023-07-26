@@ -1,6 +1,6 @@
 # Text Manager
 
-This is my first React Basic project (text handler-utils-manager-manipulator)
+This is my first React Web Application Basic project (text handler-utils-manager-manipulator)
 
 
 ## Demo Link
